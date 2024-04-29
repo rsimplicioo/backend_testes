@@ -1,6 +1,7 @@
 package br.com.rsimplicio.api.repository;
 
 import br.com.rsimplicio.api.model.Mensagem;
+import br.com.rsimplicio.api.utils.MensagemHelper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ public class MensagemRepositoryTest {
     AutoCloseable openMocks;
 
     @BeforeEach
-    void setuo() {
+    void setup() {
         openMocks = MockitoAnnotations.openMocks(this);
     }
 
@@ -34,7 +35,7 @@ public class MensagemRepositoryTest {
     @Test
     void devePermitirRegistrarMensagem() {
         // Arrange
-        var mensagem = gerarMensagem();
+        var mensagem = MensagemHelper.gerarMensagem();
         when(mensagemRepository.save(any(Mensagem.class))).thenReturn(mensagem);
         // Act
         var mensagemRegistrada = mensagemRepository.save(mensagem);
@@ -49,7 +50,7 @@ public class MensagemRepositoryTest {
     void devePermitirBuscarMensagem() {
         // Arrage
         var id = UUID.randomUUID();
-        var mensagem = gerarMensagem();
+        var mensagem = MensagemHelper.gerarMensagem();
         mensagem.setId(id);
         when(mensagemRepository.findById(any(UUID.class))).thenReturn(Optional.of(mensagem));
         // Act
@@ -77,8 +78,8 @@ public class MensagemRepositoryTest {
     @Test
     void devePermitirListarMensagens() {
         // Arrage
-        var mensagem1 = gerarMensagem();
-        var mensagem2 = gerarMensagem();
+        var mensagem1 = MensagemHelper.gerarMensagem();
+        var mensagem2 = MensagemHelper.gerarMensagem();
         var listaMensagens = Arrays.asList(
                 mensagem1,
                 mensagem2);
@@ -89,12 +90,4 @@ public class MensagemRepositoryTest {
         assertThat(mesangensRecebidas).hasSize(listaMensagens.size()).containsExactlyInAnyOrder(mensagem1, mensagem2);
         verify(mensagemRepository, times(1)).findAll();
     }
-
-    private Mensagem gerarMensagem() {
-        return Mensagem.builder()
-                .usuario("José")
-                .conteudo("conteúdo da mensagem")
-                .build();
-    }
-
 }

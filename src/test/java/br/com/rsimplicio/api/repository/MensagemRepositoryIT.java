@@ -1,6 +1,7 @@
 package br.com.rsimplicio.api.repository;
 
 import br.com.rsimplicio.api.model.Mensagem;
+import br.com.rsimplicio.api.utils.MensagemHelper;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class MensagemRepositoryIT {
     void devePermitirRegistrarMensagem() {
         // Arrange
         var id = UUID.randomUUID();
-        var mensagem = new Mensagem();
+        var mensagem = MensagemHelper.gerarMensagem();
         mensagem.setId(id);
 
         // Act
@@ -79,12 +80,5 @@ public class MensagemRepositoryIT {
         var resultadosObtidos = mensagemRepository.findAll();
         // Assert
         assertThat(resultadosObtidos).hasSizeGreaterThan(0);
-    }
-
-    private Mensagem gerarMensagem() {
-        return Mensagem.builder()
-                .usuario("José")
-                .conteudo("conteúdo da mensagem")
-                .build();
     }
 }
