@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @AutoConfigureTestDatabase
 @Transactional
-public class MensagemRepositoryIT {
+class MensagemRepositoryIT {
 
     @Autowired
     private MensagemRepository mensagemRepository;
@@ -23,7 +23,7 @@ public class MensagemRepositoryIT {
     @Test
     void devePermitirCriarTabela() {
         var totalDeRegistros = mensagemRepository.count();
-        assertThat(totalDeRegistros).isGreaterThan(0);
+        assertThat(totalDeRegistros).isPositive();
     }
 
     @Test

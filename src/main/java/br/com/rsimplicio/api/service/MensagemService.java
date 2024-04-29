@@ -1,11 +1,14 @@
+
 package br.com.rsimplicio.api.service;
 
 import br.com.rsimplicio.api.model.Mensagem;
+import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.UUID;
-
+/**
+ * TBD.
+ */
 public interface MensagemService {
     Mensagem registrarMensagem(Mensagem mensagem);
 

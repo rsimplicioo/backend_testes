@@ -3,7 +3,6 @@ package br.com.rsimplicio.api.service;
 import br.com.rsimplicio.api.exception.MensagemNotFoundException;
 import br.com.rsimplicio.api.model.Mensagem;
 import br.com.rsimplicio.api.repository.MensagemRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,11 +11,13 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class MensagemServiceImpl implements MensagemService {
+    private final MensagemRepository mensagemRepository;
 
     @Autowired
-    private final MensagemRepository mensagemRepository;
+    public MensagemServiceImpl(MensagemRepository mensagemRepository) {
+        this.mensagemRepository = mensagemRepository;
+    }
 
     @Override
     public Mensagem registrarMensagem(Mensagem mensagem) {
