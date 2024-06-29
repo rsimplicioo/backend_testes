@@ -7,6 +7,7 @@ public abstract class MensagemHelper {
         return Mensagem.builder()
                 .usuario("José")
                 .conteudo("conteúdo da mensagem")
+                .gostei(0)
                 .build();
     }
 }

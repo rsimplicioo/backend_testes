@@ -41,7 +41,7 @@ public class MensagemServiceImpl implements MensagemService {
     }
 
     @Override
-    public boolean removerMensagem(UUID id) {
+    public boolean excluirMensagem(UUID id) {
         this.buscarMensagem(id);
         mensagemRepository.deleteById(id);
         return true;

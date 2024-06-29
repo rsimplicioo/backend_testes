@@ -16,7 +16,7 @@ public interface MensagemService {
 
     Mensagem alterarMensagem(UUID id, Mensagem mensagemModificada);
 
-    boolean removerMensagem(UUID id);
+    boolean excluirMensagem(UUID id);
 
     Page<Mensagem> listarMensagens(Pageable pageable);
 }

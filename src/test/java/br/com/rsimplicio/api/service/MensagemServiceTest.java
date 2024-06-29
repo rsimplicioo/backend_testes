@@ -160,7 +160,7 @@ class MensagemServiceTest {
         when(mensagemRepository.findById(id)).thenReturn(Optional.of(mensagem));
         doNothing().when(mensagemRepository).deleteById(id);
         // Act
-        var mensagemFoiRemovida = mensagemService.removerMensagem(id);
+        var mensagemFoiRemovida = mensagemService.excluirMensagem(id);
         // Assert
         assertThat(mensagemFoiRemovida).isTrue();
         verify(mensagemRepository, times(1)).findById(any(UUID.class));
@@ -168,12 +168,12 @@ class MensagemServiceTest {
     }
 
     @Test
-    void deveGerarExcecao_QuandoRemoverMensagem_IdNaoExiste() {
+    void deveGerarExcecao_QuandoExcluirMensagem_IdNaoExiste() {
         // Arrange
         var id = UUID.fromString("88e68963-6c87-4e39-a387-9db57b718fc7");
         when(mensagemRepository.findById(id)).thenReturn(Optional.empty());
         // Act & Assert
-        assertThatThrownBy(() -> mensagemService.removerMensagem(id))
+        assertThatThrownBy(() -> mensagemService.excluirMensagem(id))
                 .isInstanceOf(MensagemNotFoundException.class)
                 .hasMessage("Mensagem não encontrada");
         verify(mensagemRepository, times(1)).findById(any(UUID.class));
