@@ -43,11 +43,9 @@ public class MensagemControllerIT {
             given()
                     .contentType(MediaType.APPLICATION_JSON_VALUE)
                     .body(mensagem)
-//                    .log().all()
             .when()
                     .post("/mensagens")
             .then()
-//                    .log().all()
                     .statusCode(HttpStatus.CREATED.value())
                     .body(matchesJsonSchemaInClasspath("schemas/mensagem.schema.json"));
         }
@@ -129,7 +127,6 @@ public class MensagemControllerIT {
             .then()
                     .statusCode(HttpStatus.BAD_REQUEST.value())
                     .body(equalTo("Mensagem não encontrada"));
-//                    .body(matchesJsonSchemaInClasspath("schemas/error.schema.json"));
         }
 
         @Test

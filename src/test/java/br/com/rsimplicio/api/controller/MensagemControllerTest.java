@@ -30,7 +30,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class MensagemControllerTest {
@@ -238,7 +237,8 @@ public class MensagemControllerTest {
             mockMvc.perform(get("/mensagens")
                 .param("page", "0")
                 .param("size", "10")
-            ).andDo(print())
+            )
+//                    .andDo(print())
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.content", not(empty())))
             .andExpect(jsonPath("$.totalPages").value(1))

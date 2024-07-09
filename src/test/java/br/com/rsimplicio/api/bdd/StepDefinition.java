@@ -4,7 +4,6 @@ import br.com.rsimplicio.api.model.Mensagem;
 import br.com.rsimplicio.api.utils.MensagemHelper;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
-import io.cucumber.java.pt.Então;
 import io.cucumber.java.pt.Quando;
 import io.restassured.response.Response;
 import org.springframework.http.HttpStatus;
@@ -31,13 +30,13 @@ public class StepDefinition {
         return response.then().extract().as(Mensagem.class);
     }
 
-    @Então("a mansagem é registrada com sucesso")
+    @Entao("a mansagem é registrada com sucesso")
     public void a_mansagem_é_registrada_com_sucesso() {
         response.then()
                 .statusCode(HttpStatus.CREATED.value());
     }
 
-    @Então("deve ser apresentada")
+    @Entao("deve ser apresentada")
     public void deve_ser_apresentada() {
         response.then()
                 .body(matchesJsonSchemaInClasspath("schemas/mensagem.schema.json"));
