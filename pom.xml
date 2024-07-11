@@ -273,5 +273,21 @@
         </plugins>
       </build>
     </profile>
+
+    <profile>
+      <id>performance-test</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>io.gatling</groupId>
+            <artifactId>gatling-maven-plugin</artifactId>
+            <version>4.3.7</version>
+            <configuration>
+              <simulationClass>br.com.rsimplicio.api.performance.PerformanceSimulation</simulationClass>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
 </project>
